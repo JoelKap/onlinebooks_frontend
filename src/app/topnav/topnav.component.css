@@ -1,0 +1,17 @@
+.nav-left {
+    font-weight    : bold;
+    text-align     : center;
+    text-decoration: none;
+    color          : #969547;
+    font-size      : 12px;
+}
+
+.nav-left .link {
+    font-size      : 12px;
+    font-weight    : bold;
+    text-align     : center;
+    text-decoration: none;
+    cursor         : pointer;
+    color          : #969547;
+    padding-left   : 30px !important;
+}

@@ -1,0 +1,59 @@
+<div class="table-responsive">
+    <table class="table text-nowrap mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>Subscription Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subscription of subscriptions | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td style="color:beige;" class="align-left">{{subscription.name}}</td>
+                <td class="btn btn-outline-primary" class="align-left"> 
+                    <button type="button" class="btn btn-outline-primary" (click)="viewSubscriptionBooks(subscription, mymodal)">View Books</button>
+                </td>
+                <td class="align-left">
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteSubscription(subscription)">Delete Subscription</button>
+                </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" id="modal-basic-title" style="color: darkgray;">{{headerMenu}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table text-nowrap mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>name</th>
+                        <th>author</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of books | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <td style="color:black;" class="align-left">{{book.name}}</td>
+                        <td style="color:black;" class="align-left">{{book.author}}</td>
+                        <td class="align-left">
+                            <button type="button" class="btn btn-outline-danger" (click)="Unsubscribe(book)">Unsubscribe</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">Cancel</button> -->
+        <!-- <button type="button" class="btn btn-outline-primary" (click)="login();modal.dismiss('Cross click')">Login</button> -->
+    </div>
+</ng-template>

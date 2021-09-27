@@ -1,0 +1,91 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">S'il vous plaît, attendez...</p>
+</ngx-spinner>
+
+<div id="templatemo_menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="isLoggedIn() && isAdmin()" [routerLink]="['/admin-dashboard']">Admin dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="isLoggedIn() && isInternalUser()" [routerLink]="['/user-subscriptions']">Subscription</a>
+                    </li>
+                </ul>
+                <span *ngIf="isLoggedIn()">
+                    <a class="nav-left" aria-current="page">Welcome: {{name}}</a>
+                </span>
+                <span class="navbar-text">
+                    <a class="nav-left link" style="padding-left: 10px; cursor: pointer;" *ngIf="!isLoggedIn()" aria-current="page" (click)="registrationModal(registermodal)">Register</a>
+                    <a class="nav-left link" style="padding-left: 10px; cursor: pointer;" *ngIf="!isLoggedIn()" aria-current="page" (click)="openModal(mymodal)">Login</a>
+                    <a class="nav-left link" style="padding-left: 10px; cursor: pointer;" *ngIf="isLoggedIn()" aria-current="page" (click)="logout()">Logout</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" id="modal-basic-title" style="color: darkgray;">{{headerMenu}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="loginForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input placeholder="Email" type="text" formControlName="email" class="form-control mb-4" style="font-family:Arial">
+                </div>
+                <div class="col-sm-12">
+                    <input placeholder="password" type="password" formControlName="password" class="form-control mb-4" style="font-family:Arial, FontAwesome">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-outline-primary" (click)="login();modal.dismiss('Cross click')">Login</button>
+    </div>
+</ng-template>
+
+<ng-template #registermodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" id="modal-basic-title" style="color: darkgray;">{{headerMenu}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="registerForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input placeholder="Firstname" type="text" formControlName="firstname" class="form-control mb-4" style="font-family:Arial">
+                </div>
+                <div class="col-sm-12">
+                    <input placeholder="Lastname" type="text" formControlName="lastname" class="form-control mb-4" style="font-family:Arial">
+                </div>
+                <div class="col-sm-12">
+                    <input placeholder="Email" type="text" formControlName="email" class="form-control mb-4" style="font-family:Arial">
+                </div>
+                <div class="col-sm-12">
+                    <input placeholder="password" type="password" formControlName="password" class="form-control mb-4" style="font-family:Arial, FontAwesome">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-outline-primary" (click)="register();modal.dismiss('Cross click')">Login</button>
+    </div>
+</ng-template>

@@ -1,0 +1,13 @@
+<div id="templatemo_content_right">
+    <div class="templatemo_product_box" *ngFor="let book of books | paginate: { itemsPerPage: 4, currentPage: p }">
+        <h1>{{book.name}} <span></span></h1>
+        <img src="assets/images/templatemo_image_01.jpg" alt="image" />
+        <div class="product_info">
+            <p style="color:white">Author: {{book.author}}</p>
+            <h3>R{{book.price}}</h3>
+        </div>
+        <div class="cleaner">&nbsp;</div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="cleaner_with_width">&nbsp;</div>
+</div> <!-- end of content right -->

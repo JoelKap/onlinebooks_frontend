@@ -1,0 +1,20 @@
+<div id="templatemo_content_right">
+    <div class="buy_now_button">
+        <a class="row" style="cursor: pointer;" (click)="subscribe()">Subscribe</a>
+    </div>
+    <h3>Please subscribe to {{catalogueName}} for R{{price}} only</h3>
+    <div class="templatemo_product_box"
+        *ngFor="let bookCatalogue of bookCatalogues | paginate: { itemsPerPage: 4, currentPage: p }">
+        <h1>{{bookCatalogue.book?.name}} <span></span></h1>
+        <img src="assets/images/templatemo_image_01.jpg" alt="image" />
+        <div class="product_info">
+            <p style="color:white">Author: {{bookCatalogue.book?.author}}</p>
+            <h3>R{{bookCatalogue.book?.price}}</h3>
+        </div>
+        <div class="cleaner">&nbsp;</div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="cleaner_with_width">&nbsp;</div>
+
+    <a href="subpage.html"><img src="assets/images/templatemo_ads.jpg" alt="ads" /></a>
+</div> <!-- end of content right -->

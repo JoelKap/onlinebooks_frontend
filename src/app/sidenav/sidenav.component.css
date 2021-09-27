@@ -1,0 +1,11 @@
+.side-nav-link {
+    font-weight    : normal;
+    text-decoration: none;
+    color          : #969547;
+    cursor: pointer;
+}
+
+.side-nav-link a:hover {
+    color: #fcf88e;
+    cursor: pointer;
+}
